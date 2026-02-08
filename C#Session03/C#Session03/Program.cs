@@ -18,14 +18,14 @@
         public float Length
         {
             get { return _length; }
-            set { if(_length >= 0)
+            set { if(value >= 0)
                     _length = value; }
 
         }
         public float Width
         {
             get { return _width; }
-            set { if(_width >= 0)
+            set { if(value >= 0)
                     _width = value;
             }
         }
@@ -71,13 +71,13 @@
         public int Quantity
         {
             get { return _quantity; }
-            set { if(_quantity >= 0)
+            set { if(value >= 0)
                     _quantity = value; }
         }
         public decimal UnitPrice
         {
             get { return _unitPrice; }
-            set { if(_unitPrice >= 0)
+            set { if(value >= 0)
                     _unitPrice = value; }
         }
         public decimal TotalPrice()
@@ -136,10 +136,10 @@
         }
         public int TransferTo(Account another, int amount)
         {
-            if (another._balance >= amount && amount > 0)
+            if (this._balance >= amount && amount > 0)
             {
-                another._balance -= amount;
-                this._balance += amount;
+                this._balance -= amount;
+                another._balance += amount;
             }
             else
             {
@@ -193,10 +193,10 @@
             Array.Sort(sortedarr1);
             Array.Sort(sortedarr2);
 
-            string sortedStr1 =Convert.ToString(sortedarr1);
-            string sortedStr2 = Convert.ToString(sortedarr2);
+            string sortedStr1 = new string(sortedarr1);
+            string sortedStr2 = new string(sortedarr2);
 
-           
+
             if (sortedStr1 == sortedStr2)
             {
                 Console.WriteLine($"'{str1}' and '{str2}' are anagrams.");
@@ -208,11 +208,14 @@
             Console.WriteLine("=================================");
             Console.WriteLine("===== add 100 numbers in list and find sum and  find even number and odd number =====");
             List<int> numbers = new List<int>();
+            Random rnd = new Random();
+
             for (int i = 1; i <= 100; i++)
             {
-                int randomNumber = new Random().Next(1, 101);
+                int randomNumber = rnd.Next(1, 101);
                 numbers.Add(randomNumber);
             }
+
             int sum = numbers.Sum();
             Console.WriteLine($"Sum of numbers: {sum}");
 
@@ -255,7 +258,7 @@
             acc1.Debit(100);
             Console.WriteLine("After debiting $100 from John Doe's account:");
             Console.WriteLine(acc1.toString());
-            acc2.TransferTo(acc1, 300);
+            acc1.TransferTo(acc2, 300);
             Console.WriteLine("After transferring $300 from John Doe's account to Jane Smith's account:");
             Console.WriteLine(acc1.toString());
             Console.WriteLine(acc2.toString());
