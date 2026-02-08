@@ -193,8 +193,8 @@
             Array.Sort(sortedarr1);
             Array.Sort(sortedarr2);
 
-            string sortedStr1 = new string(sortedarr1);
-            string sortedStr2 = new string(sortedarr2);
+            string sortedStr1 =Convert.ToString(sortedarr1);
+            string sortedStr2 = Convert.ToString(sortedarr2);
 
            
             if (sortedStr1 == sortedStr2)
@@ -214,12 +214,21 @@
                 numbers.Add(randomNumber);
             }
             int sum = numbers.Sum();
-            Console.WriteLine($"Sum of numbers from 1 to 100: {sum}");
-            var evenNumbers = numbers.Where(n => n % 2 == 0).ToList();
-            var oddNumbers = numbers.Where(n => n % 2 != 0).ToList();
-            Console.WriteLine("Even numbers from 1 to 100:");
+            Console.WriteLine($"Sum of numbers: {sum}");
+
+            List<int> evenNumbers =new List<int>();
+            List<int> oddNumbers = new List<int>();
+
+            foreach (int num in numbers)
+            {
+                if (num % 2 == 0)
+                    evenNumbers.Add(num);
+                else
+                    oddNumbers.Add(num);
+            }
+            Console.Write("Even numbers:");
             Console.WriteLine(string.Join(", ", evenNumbers));
-            Console.WriteLine("Odd numbers from 1 to 100:");
+            Console.Write("Odd numbers:");
             Console.WriteLine(string.Join(", ", oddNumbers));
 
             Console.WriteLine("=================================");
